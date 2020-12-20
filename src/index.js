@@ -15,14 +15,22 @@ const refs = {
 
 refs.startBtn.addEventListener('click', handleOnStartBtnClick);
 refs.stopBtn.addEventListener('click', handleOnStopBtnClick);
-
 let id = null;
+function submitbtn(){
+  document.querySelector('[data-action="start"]').disabled = true;
 
-function handleOnStartBtnClick() {
+}
+function handleOnStartBtnClick(event) {
+  if (event.currentTarget === refs.startBtn) {
+submitbtn()
+  }
   id = setInterval(setBodyBackgroundColor, 1000);
 }
 
-function handleOnStopBtnClick() {
+function handleOnStopBtnClick(event) {
+  if (event.currentTarget === refs.stopBtn) {
+    refs.startBtn.removeAttribute('disabled')
+  }
   clearInterval(id);
   id = null;
 }
